@@ -1,6 +1,13 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://jmnrrzvzatatdpgrnxpt.supabase.co'
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_tnf-AIph6ymAuUM66_A02g_0Rd0OyGz'
+export const supabase = createClient(
+  'https://nowfhkgolknvcciczwdt.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vd2Zoa2dvbGtudmNjaWN6d2R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyMTkwOTcsImV4cCI6MjA4ODc5NTA5N30.itFln788XzffQON7rTzj6iY6YQPf4yhbJAhq3OZVsBQ'
+)
+```
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+Сохрани → потом:
+```
+git add .
+git commit -m "fix supabase url"
+git push
