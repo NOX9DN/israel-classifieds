@@ -6,8 +6,3 @@ export const supabase = createClient(
 )
 ```
 
-Сохрани → потом:
-```
-git add .
-git commit -m "fix supabase url"
-git push
