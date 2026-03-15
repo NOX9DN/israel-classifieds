@@ -1,8 +1,22 @@
 import { createClient } from '@supabase/supabase-js'
 
-export const supabase = createClient(
-  'https://nowfhkgolknvcciczwdt.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vd2Zoa2dvbGtudmNjaWN6d2R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyMTkwOTcsImV4cCI6MjA4ODc5NTA5N30.itFln788XzffQON7rTzj6iY6YQPf4yhbJAhq3OZVsBQ'
-)
-```
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
+// Клиентский клиент — для браузера (anon key)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+// Серверный клиент — только для API роутов и Server Components (service_role key)
+// НИКОГДА не используй на клиенте — key секретный
+export function createServerClient() {
+  return createClient(
+    supabaseUrl,
+    process.env.SUPABASE_SERVICE_KEY,
+    {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+      },
+    }
+  )
+}
